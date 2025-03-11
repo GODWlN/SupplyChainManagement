@@ -1,0 +1,6 @@
+#Thu Feb 13 23:15:08 IST 2025
+__DEFAULT__=false
+expression=conslo
+org.eclipse.help.ui.localSearch.master=true
+org.eclipse.sdk.Eclipse.master=true
+org.eclipse.sdk.Google.master=true

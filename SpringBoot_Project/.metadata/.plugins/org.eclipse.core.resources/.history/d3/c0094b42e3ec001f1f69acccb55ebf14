@@ -1,0 +1,26 @@
+package org.jsp.supplychainmanagement.service;
+import org.jsp.supplychainmanagement.dao.CustomerDao;
+import org.jsp.supplychainmanagement.dto.ResponseStructure;
+import org.jsp.supplychainmanagement.entity.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+@Service
+public class CustomerService {
+	
+	@Autowired
+	private CustomerDao customerDao;
+
+	public ResponseEntity<ResponseStructure<Customer>> addCustomer(Customer customer) {
+		Customer receiveCustomer=customerDao.addCustomer(customer);
+		ResponseStructure<Customer>responseStructure=new ResponseStructure<Customer>();
+		
+		responseStructure.setStatusCode(HttpStatus.CREATED.value());
+		responseStructure.setMessage("Created");
+		responseStructure.setData(receiveCustomer);
+		
+		return new ResponseEntity<ResponseStructure<Customer>>(responseStructure, HttpStatus.CREATED);
+	}
+}

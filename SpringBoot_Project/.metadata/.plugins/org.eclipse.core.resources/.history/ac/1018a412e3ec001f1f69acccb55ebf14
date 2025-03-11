@@ -1,0 +1,17 @@
+package org.jsp.supplychainmanagement.dao;
+import org.jsp.supplychainmanagement.entity.Customer;
+import org.jsp.supplychainmanagement.repository.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class CustomerDao {
+
+	@Autowired
+	private CustomerRepository customerRepository;
+
+	public Customer addCustomer(Customer customer) {
+		customerRepository.save(customer);
+		return customer;
+	}
+}

@@ -1,0 +1,30 @@
+package org.jsp.supplychainmanagement.controller;
+import org.jsp.supplychainmanagement.dto.ResponseStructure;
+import org.jsp.supplychainmanagement.entity.Order;
+import org.jsp.supplychainmanagement.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RequestMapping("/jsp/order")
+@RestController
+public class OrderController {
+	
+	@Autowired
+	private OrderService orderService;
+	
+	@PostMapping("/{customer_id}")
+	public ResponseEntity<ResponseStructure<Order>> createOrder(@RequestBody Order order,@PathVariable int customer_id){
+		return orderService.createOrder(order,customer_id);
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<ResponseStructure<Order>> getOrderById(@PathVariable int id){
+		return orderService.getOrderById(id);
+	}
+}
